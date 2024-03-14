@@ -1,6 +1,14 @@
 <div class="contents row">
   <% @posts.each do |post| %>
-    <div class="content_post" style="background-image: url(<%= tweet.image %>);">
+    <div class="content_post" style="background-image: url(<%= post.image %>);">
+      <div class="more">
+        <span><%= image_tag 'three_point_leader.png' %></span>
+        <ul class="more_list">
+          <li>
+            <%= link_to '削除', "/posts/#{post.id}", data: { turbo_method: :delete } %>
+          </li>
+        </ul>
+      </div>
       <p><%= post.image %></p>
       <span class="name">
         <%= post.text %>
