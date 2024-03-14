@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:edit, :show]
+
   def index
     @posts = Post.all
   end
@@ -23,7 +25,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
@@ -32,8 +33,15 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+  end
+
   private
   def post_params
     params.require(:post).permit(:image, :text)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end

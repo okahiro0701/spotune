@@ -12,7 +12,9 @@
           </li>
         </ul>
       </div>
-      <p><%= post.image %></p>
+      <%= link_to post_path(post.id) do %>
+        <p><%= post.image %></p>
+      <% end %>
       <span class="name">
         <%= post.text %>
       </span>
