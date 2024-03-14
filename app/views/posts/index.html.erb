@@ -5,6 +5,9 @@
         <span><%= image_tag 'three_point_leader.png' %></span>
         <ul class="more_list">
           <li>
+            <%= link_to '編集', edit_post_path(post.id) %>
+          </li>
+          <li>
             <%= link_to '削除', "/posts/#{post.id}", data: { turbo_method: :delete } %>
           </li>
         </ul>
