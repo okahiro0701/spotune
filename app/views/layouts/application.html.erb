@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <header class="header">
+      <div class="header__bar row">
+        <h1 class="grid-6"><a href="/">SpoTune</a></h1>
+      </div>
+    </header>
     <% if user_signed_in? %>
           <div class="user_nav grid-6">
             <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
@@ -23,5 +28,10 @@
           </div>
         <% end %>
     <%= yield %>
+    <footer>
+      <p>
+        Copyright SpoTune 2024.
+      </p>
+    </footer>
   </body>
 </html>
