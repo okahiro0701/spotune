@@ -1,24 +1,30 @@
-<div class="contents row">
+<div class="pt-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mb-5">
+        <div class="card lg-6 box-shadow"  style="max-width: 30rem;">
   <%= render "devise/shared/headers" %>
   <% @posts.each do |post| %>
-    <div class="content_post" style="background-image: url(<%= post.image %>);">
-      <div class="more">
-        <span><%= image_tag 'three_point_leader.png' %></span>
-        <ul class="more_list">
-          <li>
-            <%= link_to '編集', edit_post_path(post.id) %>
-          </li>
-          <li>
-            <%= link_to '削除', "/posts/#{post.id}", data: { turbo_method: :delete } %>
-          </li>
-        </ul>
-      </div>
-      <%= link_to post_path(post.id) do %>
-        <p><%= post.image %></p>
-      <% end %>
-      <span class="name">
-        <%= post.text %>
-      </span>
+        <%= link_to post_path(post.id) do %>
+          <p class="card-img-top"><%= post.image %></p>
+        <% end %>
+        <div class="card-body">
+          <span class="name">
+            <p class="card-text">
+              <%= post.text %>
+            </p>
+          </span>
+        </div>
     </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <div class="btn btn-sm btn-outline-secondary"><%= link_to '編集', edit_post_path(post.id) %></div>
+            <div class="btn btn-sm btn-outline-secondary"><%= link_to '削除', "/posts/#{post.id}", data: { turbo_method: :delete } %></div>
+          </div>
+        </div>
   <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
