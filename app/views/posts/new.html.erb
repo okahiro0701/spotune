@@ -1,10 +1,23 @@
-<div class="contents row">
-  <div class="container">
-    <h3>投稿する曲</h3>
-    <%= form_with(model: @post, local: true) do |form| %>
-      <%= form.submit "投稿" %>
-      <%= form.text_field :image, placeholder: "選択する" %>
-      <%= form.text_area :text, placeholder: "コメント", rows: "10" %>
+<h3>アーティスト名で検索</h3>
+<%= form_with url: search_musics_path, method: :get, local: true do |form| %>
+  <%= form.text_field :search %>
+  <%= form.submit 'アーティスト名検索', name: nil %>
+<% end %>
+
+
+<h1>検索結果</h1>
+<div>
+  <% if @searchartists.present? %>
+    <% @searchartists.each do |searchartist| %>
+      <div>
+        <h3><%= searchartist.name %></h3>
+        <% if searchartist.images.any? %>
+          <% image = searchartist.images[1] %>
+          <%= image_tag(image["url"]) %>
+        <% else %>
+          <%= image_tag("default.jpg") %>
+        <% end %>
+      </div>
     <% end %>
-  </div>
+  <% end %>
 </div>

@@ -2,6 +2,15 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :show]
   before_action :move_to_index, except: [:index, :show]
 
+  require 'rspotify'
+  RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
+
+  def search
+    if params[:search].present?
+    @musics = RSpotify::Track.search(params[:search])
+    end
+  end
+
   def index
     @posts = Post.all
   end
