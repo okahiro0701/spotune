@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
 
   def search
+    @post = Post.new
     if params[:search].present?
     @searchartists = RSpotify::Artist.search(params[:search])
     end
@@ -21,7 +22,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    binding.pry
     @post = Post.new(post_params)
     if @post.save
       redirect_to root_path
