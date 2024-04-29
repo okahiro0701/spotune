@@ -6,9 +6,11 @@ class PostsController < ApplicationController
   RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
 
   def search
+    @post = Post.new
     if params[:search].present?
-    @musics = RSpotify::Track.search(params[:search])
+    @searchartists = RSpotify::Artist.search(params[:search])
     end
+    render:new
   end
 
   def index
