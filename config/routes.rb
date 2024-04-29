@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     collection {get "search"}
   end
   root to: "posts#index"
-    resources :posts
-    resources :users, only: :show
+  resources :posts do
+    collection {get "search"}
+  end
+  resources :users, only: :show
 end

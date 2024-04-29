@@ -7,8 +7,9 @@ class PostsController < ApplicationController
 
   def search
     if params[:search].present?
-    @musics = RSpotify::Track.search(params[:search])
+    @searchartists = RSpotify::Artist.search(params[:search])
     end
+    render:new
   end
 
   def index
@@ -20,6 +21,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    binding.pry
     @post = Post.new(post_params)
     if @post.save
       redirect_to root_path
