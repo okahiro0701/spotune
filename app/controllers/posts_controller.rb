@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def search
     @post = Post.new
     if params[:search].present?
-    @searchartists = RSpotify::Artist.search(params[:search])
+    @searchartists = RSpotify::Album.search(params[:search])
     end
     render:new
   end
