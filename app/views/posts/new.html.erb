@@ -9,6 +9,7 @@
 <div>
   <% if @searchartists.present? %>
     <% @searchartists.each do |searchartist| %>
+    <% @songs.each do |song| %>
       <div>
         <h3><%= searchartist.name %></h3>
         <% if searchartist.images.any? %>
@@ -16,13 +17,15 @@
           <%= image_tag(image["url"]) %>
           <%= form_with model: @post, url: posts_path, local: true do |f| %>
             <%= f.hidden_field :image, value: image["url"] %>
+            <%= f.hidden_field :preview_url, value: song.preview_url %>
             <%= f.text_field :text %>
             <%= f.submit "投稿する"%>
-          <% end%>
+          <% end %>
         <% else %>
           no image 
         <% end %>
       </div>
+    <% end %>
     <% end %>
   <% end %>
 </div>
