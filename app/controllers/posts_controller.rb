@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     @post = Post.new
     if params[:search].present?
     @searchartists = RSpotify::Album.search(params[:search])
+    @songs = RSpotify::Track.search(params[:search]).first(1)
     end
     render:new
   end
@@ -50,7 +51,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:image, :text).merge(user_id: current_user.id)
+    params.require(:post).permit(:image, :text, :preview_url).merge(user_id: current_user.id)
   end
 
   def set_post

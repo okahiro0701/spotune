@@ -13,6 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2024_03_12_134725) do
   create_table "posts", charset: "utf8", force: :cascade do |t|
     t.text "image"
+    t.text "preview_url"
     t.text "text"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
